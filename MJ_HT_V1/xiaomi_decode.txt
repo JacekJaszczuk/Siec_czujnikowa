@@ -1,0 +1,14 @@
+50 20 aa 01 b4 44 bd 30 34 2d 58 0d 10 04 d1 00 68 01
+
+Wszędzie format LittleEndian (MAC 58 2D...):
+[01-02]             50 20: Frame control
+[03-04]             aa 01: ID
+[05-05]                b4: Index
+[06-11] 44 bd 30 34 2d 58: MAC
+[12-13]             0d 10: Type of data
+[14-14]                04: Length
+[15-16]             d1 00: Temperatura (209) 20.9
+[17-18]             68 01: Wilgotność (360) 36.0
+
+50 20 aa 01 f0 44 bd 30 34 2d 58 0a 10 01 5e
+[15-15]                5e: Procent baterii (94) 94
