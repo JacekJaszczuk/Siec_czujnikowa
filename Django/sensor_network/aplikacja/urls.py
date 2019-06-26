@@ -7,4 +7,6 @@ urlpatterns = [
     path('<int:sensor_id>/', views.detail, name='detail'),
     path('<int:sensor_id>/results/', views.results, name='results'),
     path('<int:sensor_id>/vote/', views.vote, name='vote'),
+    path('dodaj/', views.dodaj, name="dodaj"),
+    path('generyczny/', views.IndexView.as_view(), name='generyczny'),
 ]

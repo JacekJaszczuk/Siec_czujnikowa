@@ -3,9 +3,22 @@
     <ul>
     {% for sensor in sensor_list %}
         <!-- <li><a href="/aplikacja/{{ sensor.id }}/">{{ sensor.name }}</a></li> -->
-        <li><a href="{% url 'aplikacja:detail' sensor.id %}">{{ sensor.name }}</li>
+        <li><a href="{% url 'aplikacja:detail' sensor.id %}">{{ sensor.name }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
     <p>No polls are available.</p>
 {% endif %}
+
+<h1>Formularz dla odważnych</h1>
+{% if error_message %}
+    <p><strong>{{ error_message }}</strong></p>
+{% endif %}
+<form action="{% url 'aplikacja:index' %}" method="POST">
+    {% csrf_token %}
+    <input type="radio" name="choice" id="choice1" value="Ala">
+    <label for="choice1">Ala</label>
+    <input type="radio" name="choice" id="choice2" value="Arek">
+    <label for="choice1">Arek</label>
+    <input type="submit">
+</form>

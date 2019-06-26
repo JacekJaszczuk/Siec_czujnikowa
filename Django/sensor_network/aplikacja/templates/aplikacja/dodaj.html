@@ -1,0 +1,11 @@
+<h1>Dodawanie nowego czujnika!</h1>
+<form method="POST">
+    {% csrf_token %}
+    <input type="text" value="Nazwa urządzenia" name="name">
+    <br>
+    <input type="text" value="Temat" name="topic">
+    <br>
+    <input type="text" value="Typ" name="type">
+    <br>
+    <input type="submit">
+</form>

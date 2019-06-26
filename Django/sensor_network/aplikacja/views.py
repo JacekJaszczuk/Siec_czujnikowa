@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import loader
+from django.urls import reverse
+from django.views import generic
 from .models import Sensor
 
 # Create your views here.
@@ -30,3 +32,18 @@ def results(request, sensor_id):
 
 def vote(request, sensor_id):
     return HttpResponse("O rany to jest numer %s" % sensor_id)
+
+def dodaj(request):
+    if request.POST:
+        print("To POST!")
+        s = Sensor(name=request.POST["name"], topic=request.POST["topic"], type=request.POST["type"])
+        s.save()
+        return HttpResponseRedirect(reverse("aplikacja:dodaj"))
+    return render(request, "aplikacja/dodaj.html")
+
+class IndexView(generic.ListView):
+    template_name = "aplikacja/index.html"
+    context_object_name = "sensor_list"
+
+    def get_queryset(self):
+        return Sensor.objects.all()
