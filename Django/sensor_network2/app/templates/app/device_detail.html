@@ -1,0 +1,16 @@
+<header>
+    <title>Welcome!</title>
+</header>
+<body>
+    <h1>Sensors Network</h1>
+    <h2>Welcome {{ user }}!</h2>
+    <p>Choose your Redis field:</p>
+    <ul>
+    {% for redisfield in redisfield_list %}
+        <li><a href="{{place_id}}/{{redisfield.id}}">{{redisfield}}</a></li>
+    {% endfor %}
+    </ul>
+</body>
+<footer>
+    <a href="logout">Logout</a>
+</footer>

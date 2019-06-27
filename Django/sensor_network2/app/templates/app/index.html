@@ -5,15 +5,20 @@
     <h1>Sensors Network</h1>
     <h2>Welcome {{ user }}!</h2>
     {% if user == "Anonymous" %}
-    <p>First You must login!</p>
+        <p>First You must login!</p>
     {% else %}
-    <p>Ala ma kota!</p>
+        <p>Choose your place:</p>
+        <ul>
+        {% for place in place_list %}
+            <li><a href="{{place.id}}">{{place}}</a></li>
+        {% endfor %}
+        </ul>
     {% endif %}
 </body>
 <footer>
     {% if user == "Anonymous" %}
-    <a href="login">Login</a>
+        <a href="login">Login</a>
     {% else %}
-    <a href="logout">Logout</a>
+        <a href="logout">Logout</a>
     {% endif %}
 </footer>
