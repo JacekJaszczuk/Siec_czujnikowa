@@ -3,13 +3,19 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
 from django.views import generic
+from django.contrib.auth.models import User
+from django.contrib.auth import login, logout
 from .models import Sensor
 
 # Create your views here.
 def index(request):
     sensor_list = Sensor.objects.all()
     template = loader.get_template('aplikacja/index.html')
-    context = { 'sensor_list': sensor_list }
+    if request.user.is_authenticated:
+        lipa = "O super! Znamy Cię! Witaj {}".format(request.user.username)
+    else:
+        lipa = "Witaj nieznajomy!"
+    context = { 'sensor_list': sensor_list, 'lipa': lipa }
     #return HttpResponse(template.render(context, request))
     return render(request, 'aplikacja/index.html', context)
 
@@ -47,3 +53,12 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         return Sensor.objects.all()
+
+def alicja_login(request):
+    u = User.objects.get(username="Alicja")
+    login(request, u)
+    return HttpResponse("Alicja została zalogowana!")
+
+def alicja_logout(request):
+    logout(request)
+    return HttpResponse("Alicja została wylogowana!")

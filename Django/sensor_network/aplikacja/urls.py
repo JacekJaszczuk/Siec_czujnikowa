@@ -9,4 +9,6 @@ urlpatterns = [
     path('<int:sensor_id>/vote/', views.vote, name='vote'),
     path('dodaj/', views.dodaj, name="dodaj"),
     path('generyczny/', views.IndexView.as_view(), name='generyczny'),
+    path('alicja_login/', views.alicja_login, name="alicja_login"),
+    path('alicja_logout/', views.alicja_logout, name="alicja_logout"),
 ]

@@ -15,8 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.shortcuts import redirect
+from django.http import HttpResponseRedirect
 
 urlpatterns = [
+    path('', lambda r: HttpResponseRedirect('aplikacja/')),
     path('aplikacja/', include('aplikacja.urls')),
+    #path('', include('aplikacja.urls')),
     path('admin/', admin.site.urls),
 ]
