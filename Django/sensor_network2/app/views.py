@@ -4,7 +4,10 @@ from django.urls import reverse
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import authenticate as auth_authenticate
-from .models import Place, Device
+from .models import Place, Device, RedisField
+import redis
+
+r = redis.Redis()
 
 # Create your views here.
 def index(request):
@@ -51,4 +54,17 @@ def device_detail(request, place_id, device_id):
     return render(request, "app/device_detail.html", context)
 
 def redisfield_detail(request, place_id, device_id, redisfield_id):
-    return HttpResponse("To już jest koniec!")
+    user = request.user.username
+
+    value_list = []
+    place = Place.objects.get(id=place_id).name
+    redisfield = RedisField.objects.get(id=redisfield_id).key_name
+    redisfield = bytes(redisfield, "UTF8")
+
+    for value in r.xrange(place):
+        value = float(value[1][redisfield])
+        value_list.append(value)
+
+    context = {"user": user, "value_list": value_list}
+
+    return render(request, "app/redisfield_detail.html", context)

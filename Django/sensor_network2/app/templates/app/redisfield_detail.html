@@ -1,0 +1,15 @@
+<header>
+    <title>Welcome!</title>
+</header>
+<body>
+    <h1>Sensors Network</h1>
+    <h2>Welcome {{ user }}!</h2>
+    <ul>
+    {% for value in value_list %}
+        <li>{{value}}</li>
+    {% endfor %}
+    </ul>
+</body>
+<footer>
+    <a href="logout">Logout</a>
+</footer>
