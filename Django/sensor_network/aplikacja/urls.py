@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from django.contrib.auth.views import LoginView
 
 app_name = 'aplikacja'
 urlpatterns = [
@@ -11,4 +12,6 @@ urlpatterns = [
     path('generyczny/', views.IndexView.as_view(), name='generyczny'),
     path('alicja_login/', views.alicja_login, name="alicja_login"),
     path('alicja_logout/', views.alicja_logout, name="alicja_logout"),
+    path('wymaga_logowania/', views.wymaga_logowania, name="wymaga_logowania"),
+    path('logowanie/', LoginView.as_view(template_name="aplikacja/logowanie.html"), name="logowanie"),
 ]

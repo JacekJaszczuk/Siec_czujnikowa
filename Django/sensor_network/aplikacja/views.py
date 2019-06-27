@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.views import generic
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
+from django.contrib.auth.decorators import login_required
 from .models import Sensor
 
 # Create your views here.
@@ -62,3 +63,7 @@ def alicja_login(request):
 def alicja_logout(request):
     logout(request)
     return HttpResponse("Alicja została wylogowana!")
+
+@login_required()
+def wymaga_logowania(request):
+    return HttpResponse("Ta strona wymaga logowania! Więc Cię witamy!")
