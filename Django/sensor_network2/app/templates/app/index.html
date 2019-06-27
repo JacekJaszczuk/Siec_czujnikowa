@@ -1,0 +1,19 @@
+<header>
+    <title>Welcome!</title>
+</header>
+<body>
+    <h1>Sensors Network</h1>
+    <h2>Welcome {{ user }}!</h2>
+    {% if user == "Anonymous" %}
+    <p>First You must login!</p>
+    {% else %}
+    <p>Ala ma kota!</p>
+    {% endif %}
+</body>
+<footer>
+    {% if user == "Anonymous" %}
+    <a href="login">Login</a>
+    {% else %}
+    <a href="logout">Logout</a>
+    {% endif %}
+</footer>
