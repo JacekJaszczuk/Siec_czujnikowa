@@ -1,0 +1,25 @@
+{
+    "dimensions": [
+        {
+            "name": "GRUPA"
+        }
+    ],
+    "cubes": [
+        {
+            "name": "POMIAR",
+            "dimensions": ["GRUPA"],
+            "measures": [{"name": "WARTOSC"}],
+            "aggregates": [
+                {
+                    "name": "record_count",
+                    "function": "count"
+                },
+                {
+                    "name": "suma",
+                    "function": "sum",
+                    "measure": "WARTOSC"
+                }
+            ]
+        }
+    ]
+}
