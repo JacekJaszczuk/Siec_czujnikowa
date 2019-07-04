@@ -1,0 +1,33 @@
+{
+    "dimensions": [
+        {
+            "name": "GRUPA"
+        },
+        {
+            "name": "ROK"
+        }
+    ],
+    "cubes": [
+        {
+            "name": "POMIAR",
+            "dimensions": ["ROK", "GRUPA"],
+            "measures": [{"name": "WARTOSC"}],
+            "aggregates": [
+                {
+                    "name": "liczba_rekordow",
+                    "function": "count"
+                },
+                {
+                    "name": "suma",
+                    "function": "sum",
+                    "measure": "WARTOSC"
+                },
+                {
+                    "name": "srednia",
+                    "function": "avg",
+                    "measure": "WARTOSC"
+                }
+            ]
+        }
+    ]
+}
