@@ -1,0 +1,36 @@
+{
+    "dimensions": [
+        {
+            "name": "GRUPA"
+        },
+        {
+            "name": "ROK"
+        },
+        {
+            "name": "PLEC"
+        }
+    ],
+    "cubes": [
+        {
+            "name": "WIDOK",
+            "dimensions": ["ROK", "GRUPA", "PLEC"],
+            "measures": [{"name": "WARTOSC"}],
+            "aggregates": [
+                {
+                    "name": "liczba_rekordow",
+                    "function": "count"
+                },
+                {
+                    "name": "suma",
+                    "function": "sum",
+                    "measure": "WARTOSC"
+                },
+                {
+                    "name": "srednia",
+                    "function": "avg",
+                    "measure": "WARTOSC"
+                }
+            ]
+        }
+    ]
+}
