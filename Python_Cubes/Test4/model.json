@@ -1,0 +1,40 @@
+{
+    "dimensions": [
+        {
+            "name": "GRUPA"
+        },
+        {
+            "name": "ROK"
+        },
+        {
+            "name": "PLEC"
+        },
+        {
+            "name": "WIEK_CAT"
+        }
+    ],
+    "cubes": [
+        {
+            "name": "WIDOK",
+            "description": "Ło to jakaś fajna nazwa tej zacnej kostki!",
+            "dimensions": ["ROK", "GRUPA", "PLEC", "WIEK_CAT"],
+            "measures": [{"name": "WARTOSC"}],
+            "aggregates": [
+                {
+                    "name": "liczba_rekordow",
+                    "function": "count"
+                },
+                {
+                    "name": "suma",
+                    "function": "sum",
+                    "measure": "WARTOSC"
+                },
+                {
+                    "name": "srednia",
+                    "function": "avg",
+                    "measure": "WARTOSC"
+                }
+            ]
+        }
+    ]
+}
