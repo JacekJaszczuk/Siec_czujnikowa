@@ -243,3 +243,6 @@ Tworzymy plik "aplikacja/templates/aplikacja/generyczny.html" i zapisujemy:
     <li>{{ p }} Wiek: {{ p.age }}</li>
 {% endfor %}
 ```
+
+29. Dodanie plików statycznych:  
+Pliki statyczne należy dodać do "aplikacja/static/aplikacja".

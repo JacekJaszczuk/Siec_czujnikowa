@@ -1,4 +1,7 @@
+{% load static %}
+
 <h1>Dane dla pacjenta {{ personview.first_name }} {{ personview.last_name }}</h1>
 <li>Imię: {{ personview.first_name }}</li>
 <li>Nazwisko: {{ personview.last_name }}</li>
 <li>Wiek: {{ personview.age }}</li>
+<img alt="Wróbel" src="{% static 'aplikacja/maly_wrobel.jpg' %}">
