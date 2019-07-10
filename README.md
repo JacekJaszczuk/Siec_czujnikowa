@@ -246,3 +246,19 @@ Tworzymy plik "aplikacja/templates/aplikacja/generyczny.html" i zapisujemy:
 
 29. Dodanie plików statycznych:  
 Pliki statyczne należy dodać do "aplikacja/static/aplikacja".
+
+30. Stworzenie szablonu bazowego:
+W pliku "aplikacja/template/aplikacja/base.html" tworzymy szablon bazowy:
+``` HTML
+<h1>Hej! Witaj w naszej aplikacji!</h1>
+{% block content %}{% endblock %}
+```
+
+31. Następnie należy rozszerzyć stronę:
+``` HTML
+{% extends "aplikacja/base.html" %}
+{% block content %}
+<h1>To nasza strona WWW!</h1>
+<h2>O tak!</h2>
+{% endblock %}
+```
