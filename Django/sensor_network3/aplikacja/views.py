@@ -18,3 +18,8 @@ class Generyczny(generic.ListView):
     def get_queryset(self):
         # Zwróć wszystkich Pacjentów:
         return PersonView.objects.all()
+
+class Szczegoly(generic.DetailView):
+    model = PersonView
+    template_name = "aplikacja/szczegoly.html"
+    #context_object_name = "fajny_obiekt" # A domyślna jest personview.
