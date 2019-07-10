@@ -3,6 +3,8 @@ Praca magisterska na temat sieci czujnikowej. Politechnika Wrocławska 2019
 
 ## Django
 
+### Stworzenie nowego projektu:
+
 1. Tworzenie nowego projektu Djagno
 ```
 django-admin startproject sensor_network3
@@ -17,6 +19,7 @@ python manage.py migrate
 ```
 python manage.py runserver
 ```
+### Dodanie admina i aplikacji:
 
 4. Dodanie użytkownika admin:
 ```
@@ -27,6 +30,8 @@ python manage.py createsuperuser
 ```
 python manage.py startapp aplikacja
 ```
+
+### Stworzenie modelu:
 
 6. Tworzenie nowego modelu aplikacji:  
 W pliku "aplikacja/models.py" możemy dodać:
@@ -87,6 +92,8 @@ p.save()
 Person.objects.all()
 #<QuerySet [<Person: Aleksander Kowal>, <Person: Alicja Kot>]>
 ```
+
+### Bazodanowe widoki w Django:
 
 14. Dodawanie bazodanowego widoku do Django:  
 [Tutorial WWW](https://resources.rescale.com/using-database-views-in-django-orm/). W pliku "aplikacja/models.py" dodajemy:
@@ -155,6 +162,8 @@ COMMIT;
 python manage.py migrate
 ```
 
+### Tworzenie widoków Django:
+
 20. Tworzymy nasz pierwszy widok:  
 W pliku "aplikacja/views.py" dodajemy:
 ``` Python
@@ -205,4 +214,32 @@ from django.shortcuts import render
 
 def strona(request):
     return render(request, "aplikacja/strona.html")
+```
+
+### Widoki generyczne
+
+26. Widoki generyczne:  
+W pliku "aplikacja/urls.py" dodajemy:
+``` Python
+path('generyczny', views.Generyczny.as_view(), name='gneryczny')
+```
+
+27. W pliku "aplikacja/views.py" dodajemy widok generyczny:
+``` Python
+class Generyczny(generic.ListView):
+    template_name = "aplikacja/generyczny.html"
+    context_object_name = "fajna_lista"
+
+    def get_queryset(self):
+        # Zwróć wszystkich Pacjentów:
+        return PersonView.objects.all()
+```
+
+28. Tworzymy szablon dla widoku generycznego:  
+Tworzymy plik "aplikacja/templates/aplikacja/generyczny.html" i zapisujemy:
+``` HTML
+<h1>Lista pacjentów</h1>
+{% for p in fajna_lista %}
+    <li>{{ p }} Wiek: {{ p.age }}</li>
+{% endfor %}
 ```
