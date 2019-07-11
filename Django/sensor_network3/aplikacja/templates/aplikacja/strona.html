@@ -4,4 +4,7 @@
 <h2>O tak!</h2>
 <h3>Witaj {{ user }}!</h3>
 <h3>A to next: {{next}}</h3>
+{% if perms.aplikacja.view_personview %}
+<h4>Ach to Ty! Pewnie jesteś analitykiem!</h4>
+{% endif %}
 {% endblock %}

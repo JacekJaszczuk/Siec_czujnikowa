@@ -314,3 +314,19 @@ class Logout(LogoutView):
     # Można dać też samo next_page, wtedy nie dajemy strony pośredniej:
     next_page = "strona_fajne_to"
 ```
+
+35. Dodawanie praw dostępu do części serwisu:  
+Można dodać dekorator do widoku:
+``` Python
+from django.contrib.auth.decorators import permission_required
+@permission_required("aplikacja.view_personview", login_url="login")
+def wymaga_prawa(request):
+    return render(request, "aplikacja/wymaga_prawa.html")
+```
+
+36. Albo sprawdzanie w szablonie:
+``` HTML
+{% if perms.aplikacja.view_personview %}
+<h4>Ach to Ty! Pewnie jesteś analitykiem!</h4>
+{% endif %}
+```

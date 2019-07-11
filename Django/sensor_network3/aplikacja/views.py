@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.views import generic
 from aplikacja.models import PersonView
 from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.decorators import permission_required
 
 # Create your views here.
 
@@ -35,3 +36,8 @@ class Logout(LogoutView):
     #cont = {"next": "strona"}
     #extra_context = cont
     next_page = "strona_fajne_to"
+
+@permission_required("aplikacja.view_personview", login_url="login")
+def wymaga_prawa(request):
+    print("Twój user: {}".format(request.user))
+    return render(request, "aplikacja/wymaga_prawa.html")

@@ -9,4 +9,5 @@ urlpatterns = [
     path('szczegoly/<int:pk>', views.Szczegoly.as_view(), name="szczegoly"),
     path('login', views.Login.as_view(), name="login"),
     path('logout', views.Logout.as_view(), name="logout"),
+    path('wymaga_prawa', views.wymaga_prawa, name="wymaga_prawa")
 ]
