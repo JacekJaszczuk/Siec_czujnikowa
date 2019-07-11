@@ -31,6 +31,7 @@ class Login(LoginView):
     extra_context = cont
 
 class Logout(LogoutView):
-    template_name = "aplikacja/strona.html"
-    cont = {"next": "strona"}
-    extra_context = cont
+    #template_name = "aplikacja/strona.html"
+    #cont = {"next": "strona"}
+    #extra_context = cont
+    next_page = "strona_fajne_to"

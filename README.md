@@ -308,7 +308,9 @@ W pliku "aplikacja/views.py" definiujemy widok wylogowania:
 from django.contrib.auth.views import LogoutView
 class Logout(LogoutView):
     # Ale można też zrobić specjalny widok dla wylogowanych:
-    template_name = "aplikacja/strona.html"
-    cont = {"next": "strona"}
-    extra_context = cont
+    #template_name = "aplikacja/strona.html"
+    #cont = {"next": "strona"}
+    #extra_context = cont
+    # Można dać też samo next_page, wtedy nie dajemy strony pośredniej:
+    next_page = "strona_fajne_to"
 ```
