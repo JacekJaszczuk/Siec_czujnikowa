@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import generic
 from aplikacja.models import PersonView
+from django.contrib.auth.views import LoginView, LogoutView
 
 # Create your views here.
 
@@ -23,3 +24,13 @@ class Szczegoly(generic.DetailView):
     model = PersonView
     template_name = "aplikacja/szczegoly.html"
     #context_object_name = "fajny_obiekt" # A domyślna jest personview.
+
+class Login(LoginView):
+    template_name = "aplikacja/login.html"
+    cont = {"next": "strona"}
+    extra_context = cont
+
+class Logout(LogoutView):
+    template_name = "aplikacja/strona.html"
+    cont = {"next": "strona"}
+    extra_context = cont

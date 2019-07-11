@@ -262,3 +262,53 @@ W pliku "aplikacja/template/aplikacja/base.html" tworzymy szablon bazowy:
 <h2>O tak!</h2>
 {% endblock %}
 ```
+
+32. Tworzenie widoku LoginView:  
+W pliku "aplikacja/views.py" definiujemy widok logowania:
+``` Python
+from django.contrib.auth.views import LoginView
+class Login(LoginView):
+    template_name = "aplikacja/login.html"
+    cont = {"next": "strona"}
+    extra_context = cont
+```
+
+33. Tworzymy templatkę widoku wylogowania:  
+Dodajemy plik "aplikacja/templates/aplikacja/login.html":
+``` HTML
+<h1>Zaloguj się!</h1>
+<h2>Witaj {{ user }}!</h2>
+<h3>Twój next: {{ next }}</h3>
+
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+    <table>
+        <tr>
+            <td>{{ form.username.label_tag }}</td>
+            <td>{{ form.username }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.password.label_tag }}</td>
+            <td>{{ form.password }}</td>
+        </tr>
+    </table>
+    
+    <input type="submit" value="login">
+    <input type="hidden" name="next" value="{{ next }}">
+</form>
+```
+
+34. Tworzenie widoku LogoutView:  
+W pliku "aplikacja/views.py" definiujemy widok wylogowania:
+``` Python
+from django.contrib.auth.views import LogoutView
+class Logout(LogoutView):
+    # Ale można też zrobić specjalny widok dla wylogowanych:
+    template_name = "aplikacja/strona.html"
+    cont = {"next": "strona"}
+    extra_context = cont
+```
