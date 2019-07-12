@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <title>System pomiarowy</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="w3-bar w3-light-gray">
+        <a href="/aplikacja/" class="w3-bar-item w3-button w3-green">Strona główna</a>
+        {% if perms.aplikacja.view_pomiar %}
+        <div class="w3-dropdown-hover">
+            <button class="w3-button">Analiza <i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block">
+                <a href="analiza/temperatura" class="w3-bar-item w3-button">Temperatura</a>
+                <a href="analiza/glukoza" class="w3-bar-item w3-button">Glukoza</a>
+            </div>
+        </div>
+        {% endif %}
+        {% if perms.aplikacja.add_pomiar %}
+        <a href="api" class="w3-bar-item w3-button">API</a>
+        <a href="/admin/" class="w3-bar-item w3-button">Panel administracyjny</a>
+        {% endif %}
+        {% if user.is_authenticated %}
+        <a href="wyloguj" class="w3-bar-item w3-button w3-right">Wyloguj</a>
+        {% else %}
+        <a href="zaloguj" class="w3-bar-item w3-button w3-right">Zaloguj</a>
+        {% endif %}
+        <span class="w3-bar-item w3-right">Witaj {{ user }}!</span>
+    </div>
+    {% block content %}{% endblock %}
+</body>
+<footer>
+    <div class="w3-center w3-small w3-opacity">
+        Zarządzanie danymi w wieloczujnikowym systemie pomiarowym. Jacek Jaszczuk 218320. Politechnika Wrocławska 2019.
+    </div>
+</footer>
+</html>

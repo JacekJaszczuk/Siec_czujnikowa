@@ -1,0 +1,31 @@
+{% extends "aplikacja/base.html" %}
+{% block content %}
+<div class="w3-container">
+    <h1>Jak działa API?</h1>
+    <p>
+        Interfejs REST API służy do umieszczania danych pomiarowych
+        na serwerze przy użyciu zapytań HTTP.
+    </p>
+    <p>
+        Adres API to: <a href="/aplikacja/api"><b>/aplikacja/api</b></a>.
+        Metoda do przesyłania danych to: <b>POST</b>.
+    </p>
+    <p>
+        Do API należy przesłać ciąg <b>JSON</b>.
+    </p>
+    <p>
+        Ciąg <b>JSON</b> przyjmuje następujące klucze:
+        <li><b>data</b> - data w formacie tekstowym np.: "1993-03-12".</li>
+        <li><b>miejsce</b> - numer id miejsca, numery id miejsc można sprawdzić w panelu administracyjnym.</li>
+        <li><b>pacjent</b> - numer id pacjenta, numery id pacjentów można sprawdzić w panelu administracyjnym.</li>
+        <li><b>typ_pomiaru</b> - typ pomiaru w formie tekstowej np.: "Temperatura".</li>
+        <li><b>wartosc</b> - wartość pomiaru w formie liczby rzeczywistej.</li>
+    </p>
+    <p>
+        Przykładowy ciąg <b>JSON</b> przedstawia się następująco:<br>
+        {"data": "1993-03-12", "miejsce": 1, "pacjent": 2, "typ_pomiaru": "Temperatura", "wartosc": 36.6}
+    </p>
+    <p>
+        Serwer zwraca kod <b>200</b> jeżeli zapytanie się udało, oraz kod <b>201</b> jeżeli wystąpiły błędy.
+    </p>
+{% endblock %}

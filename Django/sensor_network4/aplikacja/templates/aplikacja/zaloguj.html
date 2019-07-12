@@ -1,0 +1,28 @@
+{% extends "aplikacja/base.html" %}
+{% block content %}
+{% if form.errors %}
+<div class="w3-panel w3-red w3-display-container">
+    <span onclick="this.parentElement.style.display='none'"
+    class="w3-button w3-display-topright">&times;</span>
+    <h3>Uwaga!</h3>
+    <p>Twoja nazwa użytkownika lub hasło są błędne. Proszę spróbować ponownie.</p>
+</div>
+{% endif %}
+<form method="post" action="{% url 'zaloguj' %}" class="w3-container">
+    {% csrf_token %}
+    <p>
+    <label>Nazwa użytkownika</label>
+    <input class="w3-input w3-border" type="text" name="username" autofocus required id="id_username">
+    </p>
+    
+    <p>
+    <label>Hasło</label>
+    <input class="w3-input w3-border" type="password" name="password" required id="id_password">    
+    </p>
+
+    <p>
+    <input class="w3-btn w3-blue" type="submit" value="Zaloguj">
+    <input type="hidden" name="next" value="{{ next }}">
+    </p>
+</form>
+{% endblock %}
