@@ -38,4 +38,8 @@ def api(request):
     return render(request, "aplikacja/api.html")
 
 def analiza_temperatura(request):
+    if request.GET.get("czy_analiza", None):
+        print("Super")
+    else:
+        print("Lipa")
     return render(request, "aplikacja/analiza/temperatura.html")

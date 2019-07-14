@@ -1,11 +1,24 @@
 {% extends "aplikacja/base.html" %}
 {% block content %}
 <div class="w3-container">
-    <h1>Witaj na stronie głównej systemu pomiarowego!</h1>
-    {% if user.is_authenticated %}
-    <p>Wybierz interesującą cię pozycję z menu.</p>
-    {% else %}
-    <p>Aby zacząć musisz się zalogować.</p>
-    {% endif %}
+    <h1>Wybierz po jakich polach chcesz agregować dane:</h1>
+    <form method="get" action="{% url 'analiza_temperatura' %}" class="w3-container">
+        <p>
+            <label>Wiek pacjenta:</label>
+            <input class="w3-check w3-border" type="checkbox" name="wiek_pacjenta">
+            <label>Data pomiaru:</label>
+            <input class="w3-check w3-border" type="checkbox" name="data_pomiaru">
+            <label>Kontynent:</label>
+            <input class="w3-check w3-border" type="checkbox" name="kontynent">
+            <label>Kraj:</label>
+            <input class="w3-check w3-border" type="checkbox" name="kraj">
+            <label>Obszar:</label>
+            <input class="w3-check w3-border" type="checkbox" name="obszar">
+        </p>
+        <p>
+            <input class="w3-btn w3-blue" type="submit" value="Analizuj">
+            <input type="hidden" name="czy_analiza" value="True">
+        </p>
+    </form>
 </div>
 {% endblock %}
