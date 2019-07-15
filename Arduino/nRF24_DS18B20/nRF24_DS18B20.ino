@@ -62,6 +62,6 @@ void loop()
     Serial.println(temp);
     radio.write(mes_out, 30);
 
-    // Czekaj 2 sekundy:
-    delay(2000);
+    // Czekaj 60 sekund:
+    delay(60000);
 }
