@@ -9,7 +9,8 @@ print("Program czytający temperaturę z seriala i wysyłający ją do API")
 dongiel = Dongiel()
 
 # Adres API:
-api_url = "http://192.168.0.20:8000/aplikacja/api"
+#api_url = "http://192.168.0.20:8000/aplikacja/api"
+api_url = "http://rejapi.ml:8000/aplikacja/api"
 
 # Słownik z danymi:
 slownik = {"data": datetime.datetime.now().date().isoformat(), "miejsce": 6, "pacjent": 4, "typ_pomiaru": "Temperatura", "wartosc": 27.6}
