@@ -1,0 +1,43 @@
+{
+    "dimensions": [
+        {
+            "name": "wiek_pacjenta"
+        },
+        {
+            "name": "data_pomiaru"
+        },
+        {
+            "name": "kontynent"
+        },
+        {
+            "name": "kraj"
+        },
+        {
+            "name": "obszar"
+        }
+    ],
+    "cubes": [
+        {
+            "name": "analiza_temperatura",
+            "description": "Ło to jakaś fajna nazwa tej zacnej kostki!",
+            "dimensions": ["wiek_pacjenta", "data_pomiaru", "kontynent", "kraj", "obszar"],
+            "measures": [{"name": "wartosc"}],
+            "aggregates": [
+                {
+                    "name": "liczba_rekordow",
+                    "function": "count"
+                },
+                {
+                    "name": "suma",
+                    "function": "sum",
+                    "measure": "wartosc"
+                },
+                {
+                    "name": "srednia",
+                    "function": "avg",
+                    "measure": "wartosc"
+                }
+            ]
+        }
+    ]
+}

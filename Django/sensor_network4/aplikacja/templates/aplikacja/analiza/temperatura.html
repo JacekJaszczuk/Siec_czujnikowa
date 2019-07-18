@@ -20,5 +20,37 @@
             <input type="hidden" name="czy_analiza" value="True">
         </p>
     </form>
+    {% if czy_analiza == True %}
+    <h1>Analiza</h1>
+    <script>
+        window.onload = function () {
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                theme: "light2", // "light1", "light2", "dark1", "dark2"
+                axisY: {
+                    title: "Stopnie Celsjusza"
+                },
+                data: [{
+                    type: "column",
+                    dataPoints: [
+                        {% for x in agre_list %}
+                        { y: {{ x.srednia }}, label:
+                        {% if po_czym == "wiek_pacjenta"%} "{{ x.wiek_pacjenta }}"
+                        {% elif po_czym == "data_pomiaru"%} "{{ x.data_pomiaru }}"
+                        {% elif po_czym == "kontynent"%} "{{ x.kontynent }}"
+                        {% elif po_czym == "kraj"%} "{{ x.kraj }}"
+                        {% elif po_czym == "obszar"%} "{{ x.obszar }}" {% endif %}},
+                        {% endfor %}
+                    ]
+                }]
+            });
+            chart.render();
+
+        }
+    </script>
+    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    {% endif %}
 </div>
 {% endblock %}

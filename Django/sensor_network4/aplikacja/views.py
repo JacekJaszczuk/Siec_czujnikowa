@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 from .models import Miejsca, Pacjent, Pomiar
+from cubes import Workspace
 
 # Create your views here.
 def index(request):
@@ -39,7 +40,48 @@ def api(request):
 
 def analiza_temperatura(request):
     if request.GET.get("czy_analiza", None):
-        print("Super")
+        print("Super dokonaj analizy!")
+        # Stwórz Workspace z pliku konfiguracyjnego:
+        workspace = Workspace()
+        workspace.register_default_store("sql", url="sqlite:///db.sqlite3")
+
+        # Ładuj model:
+        workspace.import_model("model.json")
+
+        # Twórz obiekt browser:
+        browser = workspace.browser("analiza_temperatura")
+
+        # Twórz wyniki agregacji:
+        if request.GET.get("wiek_pacjenta", None):
+            res = browser.aggregate(drilldown=["wiek_pacjenta"])
+            po_czym = "wiek_pacjenta"
+        elif request.GET.get("data_pomiaru", None):
+            res = browser.aggregate(drilldown=["data_pomiaru"])
+            po_czym = "data_pomiaru"
+        elif request.GET.get("kontynent", None):
+            res = browser.aggregate(drilldown=["kontynent"])
+            po_czym = "kontynent"
+        elif request.GET.get("kraj", None):
+            res = browser.aggregate(drilldown=["kraj"])
+            po_czym = "kraj"
+        elif request.GET.get("obszar", None):
+            res = browser.aggregate(drilldown=["obszar"])
+            po_czym = "obszar"
+
+        # Wyświetl podsumowanie całkowite i dla grupy:
+        lista = []
+        print(res.summary)
+        for r in res:
+            print(type(r))
+            print(r)
+            lista.append(r)
+
+        # Twórz kontekst:
+        print(type(res))
+        cont = {"agre_list": lista, "czy_analiza": True, "po_czym": po_czym}
+
     else:
+        cont = {}
         print("Lipa")
-    return render(request, "aplikacja/analiza/temperatura.html")
+
+    return render(request, "aplikacja/analiza/temperatura.html", cont)
